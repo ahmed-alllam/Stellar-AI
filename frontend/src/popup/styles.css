@@ -1,0 +1,21 @@
+.container {
+  width: 400px;
+  padding: 20px;
+}
+
+.container legend {
+  font-weight: bold;
+}
+
+.container form {
+  margin-bottom: 0;
+}
+
+.container fieldset {
+  margin-bottom: 0;
+}
+
+.github-link {
+  float: right;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,23 @@
+{
+  "name": "ChatGPT for Google",
+  "description": "Display ChatGPT response alongside Google Search results",
+  "version": "1.9.0",
+  "manifest_version": 2,
+  "permissions": ["storage", "https://*.openai.com/", "http://localhost/*"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": ["content-script.js"],
+      "css": ["content-script.css"]
+    }
+  ]
+}
