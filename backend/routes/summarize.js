@@ -22,7 +22,7 @@ router.post("/summarize", async (req, res) => {
     try {
         const response = await axios.post(url, params, { headers: headers });
         console.log(response.data);
-        output = `${prompt}${response.data.choices[0].text}`;
+        output = `${response.data.choices[0].text}`;
         res.send(output);
         console.log(output);
     } catch (error) {

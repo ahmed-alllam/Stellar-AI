@@ -16,7 +16,7 @@ async function generateAnswers(port, question) {
     deleteConversation()
   })
 
-  await fetchSSE('http://localhost:3000/search?q=' + question, {
+  await fetchSSE('https://ai-extension.onrender.com/search?q=' + question, {
     method: 'GET',
     // signal: controller.signal,
     onMessage(message) {
@@ -49,7 +49,7 @@ async function summarizeArticle(port, article) {
     deleteConversation()
   })
 
-  await fetchSSE('http://localhost:3000/summarize', {
+  await fetchSSE('https://ai-extension.onrender.com/summarize', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

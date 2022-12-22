@@ -3,7 +3,7 @@
   "description": "Display ChatGPT response alongside Google Search results",
   "version": "1.9.0",
   "manifest_version": 3,
-  "host_permissions": ["https://*.openai.com/", "http://localhost/*"],
+  "host_permissions": ["https://*.openai.com/", "https://ai-extension.onrender.com/*"],
   "permissions": ["storage"],
   "background": {
     "service_worker": "background.js"

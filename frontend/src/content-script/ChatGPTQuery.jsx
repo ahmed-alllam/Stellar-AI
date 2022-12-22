@@ -79,7 +79,7 @@ function ChatGPTQuery(props) {
   }
 
 
-  if (error) {
+  if (error && !props.article) {
     return (
       <p className="gpt-inner">
         Failed to load response. Please try again later.
@@ -87,7 +87,8 @@ function ChatGPTQuery(props) {
     )
   }
 
-  return <p className="gpt-loading gpt-inner">Waiting for response...</p>
+  if(!props.article)
+    return <p className="gpt-loading gpt-inner">Waiting for response...</p>
 }
 
 ChatGPTQuery.propTypes = {
