@@ -57,6 +57,9 @@ function Popup() {
         https://www.facebook.com/ahmedemad9090/" target="_blank">
           <img src="https://img.icons8.com/color/48/000000/facebook-new.png" width="48" height="48" />
         </a>
+        <a href="https://www.linkedin.com/in/ahmed-e-allam/" target="_blank">
+          <img src="https://img.icons8.com/color/48/000000/linkedin.png" width="48" height="48" />
+        </a>
         <a href="https://github.com/ahmedemad3965" target="_blank">
           <img src="https://img.icons8.com/windows/64/null/github.png" width="48" height="48" />
         </a>
