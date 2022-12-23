@@ -15,7 +15,7 @@ router.get("/search", async (req, res) => {
         "prompt": prompt,
         "max_tokens": 200,
         "temperature": 0.7,
-        "model": 'text-curie-001',
+        "model": 'text-davinci-003',
         "frequency_penalty": 0,
         "presence_penalty": 0,
     };
