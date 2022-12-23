@@ -8,9 +8,9 @@ router.post("/summarize", async (req, res) => {
     const prompt = `Rewrite this for brevity, in outline form: \n ${query}.`;
     const params = {
         "prompt": prompt,
-        "max_tokens": 100,
-        "temperature": 0.5,
-        "model": 'text-ada-001',
+        "max_tokens": 1000,
+        "temperature": 0.7,
+        "model": 'text-curie-001',
         "frequency_penalty": 0,
         "presence_penalty": 0,
     };

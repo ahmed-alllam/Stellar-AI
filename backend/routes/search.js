@@ -13,9 +13,9 @@ router.get("/search", async (req, res) => {
     const prompt = `What is ${query}.`;
     const params = {
         "prompt": prompt,
-        "max_tokens": 100,
-        "temperature": 0.5,
-        "model": 'text-ada-001',
+        "max_tokens": 200,
+        "temperature": 0.7,
+        "model": 'text-curie-001',
         "frequency_penalty": 0,
         "presence_penalty": 0,
     };
