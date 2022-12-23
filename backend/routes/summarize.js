@@ -5,12 +5,12 @@ const axios = require("axios");
 router.post("/summarize", async (req, res) => {
     const query = req.body.text;
     const url = `https://api.openai.com/v1/completions`;
-    const prompt = `Summarize this in one paragraph, and get the APA citatation: \n ${query}.`;
+    const prompt = `Summarize this in one paragraph: \n ${query}.`;
     const params = {
         "prompt": prompt,
         "max_tokens": 1000,
         "temperature": 0.5,
-        "model": 'text-davinci-003',
+        "model": 'text-curie-001',
         "frequency_penalty": 0,
         "presence_penalty": 0,
     };
