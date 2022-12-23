@@ -2,6 +2,9 @@ import PropTypes from 'prop-types'
 import ChatGPTQuery from './ChatGPTQuery'
 
 function ChatGPTCard(props) {
+    if(props.triggerMode === 'disabled') {
+      return null
+    }
     if(props.question && props.question.trim().length !== 0) {
       return <ChatGPTQuery question={props.question} />
     } else if(props.article && props.article.trim().length !== 0) {

@@ -9,7 +9,7 @@ function Popup() {
 
   useEffect(() => {
     getUserConfig().then((config) => {
-      setTriggerMode(config.triggerMode || 'always')
+      setTriggerMode(config.triggerMode || 'enabled')
     })
   }, [])
 
@@ -23,7 +23,7 @@ function Popup() {
     <div className="container">
       <form>
         <fieldset onChange={onTriggerModeChange}>
-          <legend>Trigger Mode</legend>
+          <legend>Stellar AI Mode</legend>
           {Object.entries(TRIGGER_MODES).map(([value, label]) => {
             return (
               <label htmlFor={value} key={value}>
@@ -40,14 +40,17 @@ function Popup() {
           })}
         </fieldset>
       </form>
-      <a
-        href="https://github.com/wong2/chat-gpt-google-extension"
-        target="_blank"
-        rel="noreferrer"
-        className="github-link"
-      >
-        <MarkGithubIcon />
-      </a>
+
+      <div className="footer">
+        <p>
+          Stellar AI is a tool that uses Artificial Intelligence to help you
+          get summaries of articles you read and searches you do on the web.
+        </p>
+
+        <p>
+          Developed and maintained by Ahmed Allam. For any inquiries, email me at ahmedeallam@aucegypt.edu.
+        </p>
+      </div>
     </div>
   )
 }

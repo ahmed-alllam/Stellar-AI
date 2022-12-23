@@ -20,8 +20,10 @@ function getContentOfArticle() {
   // remove the text from the html comments
   article = article.replace(/<!--[\s\S]*?-->/g, '');
 
-  // take only the first 1000 characters
-  article = article.substring(0, 1000);
+  // take only the first 500 words
+  const numWords = 500;
+  article = article.split(/\s+/, numWords);
+  article = article.join(" ");
 
   return article;
 }
@@ -43,7 +45,7 @@ async function mount(question, siteConfig) {
 
   const userConfig = await getUserConfig()
   render(
-    <ChatGPTCard question={question} triggerMode={userConfig.triggerMode || 'always'} />,
+    <ChatGPTCard question={question} triggerMode={userConfig.triggerMode || 'enabled'} />,
     container,
   )
 }
@@ -68,7 +70,7 @@ async function mount2(article, siteConfig) {
 
   const userConfig = await getUserConfig()
   render(
-    <ChatGPTCard article={article} triggerMode={userConfig.triggerMode || 'always'} />,
+    <ChatGPTCard article={article} triggerMode={userConfig.triggerMode || 'enabled'} />,
     container,
   )
 }
@@ -81,7 +83,7 @@ if (siteName) {
   siteConfig = config[siteName]
 }
 
-function run() {
+async function run() {
   if (siteConfig && siteConfig.inputQuery) {
     const searchInput = getPossibleElementByQuerySelector(siteConfig.inputQuery)
     if (searchInput && searchInput.value) {

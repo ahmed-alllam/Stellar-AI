@@ -1,6 +1,6 @@
 {
-  "name": "ChatGPT for Google",
-  "description": "Display ChatGPT response alongside Google Search results",
+  "name": "Stellar AI",
+  "description": "Stellar AI is a tool that helps you get summaries of articles you read and searches you do on the web.",
   "version": "1.9.0",
   "manifest_version": 2,
   "permissions": ["storage", "https://*.openai.com/", "https://ai-extension.onrender.com/*"],
@@ -9,6 +9,11 @@
   },
   "browser_action": {
     "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "16.png",
+    "48": "48.png",
+    "128": "128.png"
   },
   "content_scripts": [
     {

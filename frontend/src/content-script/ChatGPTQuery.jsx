@@ -6,6 +6,106 @@ import rehypeHighlight from 'rehype-highlight'
 import Browser from 'webextension-polyfill'
 // import ChatGPTFeedback from './ChatGPTFeedback'
 import './highlight.scss'
+import CrossIC from '../../public/res/cross.svg';
+
+
+
+
+
+
+
+function addStylesheet(doc, link, classN) {
+  const path = chrome.runtime.getURL(link),
+    styleLink = document.createElement("link");
+
+  styleLink.setAttribute("rel", "stylesheet");
+  styleLink.setAttribute("type", "text/css");
+  styleLink.setAttribute("href", path);
+
+  if (classN)
+    styleLink.className = classN;
+
+  doc.head.appendChild(styleLink);
+}
+
+const ce = ({
+  props, tag, children, name,
+}, elementsObj) => {
+  const elm = document.createElement(tag);
+  Object.entries(props).forEach(([k, v]) => {
+    if (k === 'style') {
+      Object.entries(v).forEach(([k2, v2]) => {
+        elm.style[k2] = v2;
+      });
+    } else {
+      elm[k] = v;
+    }
+  });
+  if (children) {
+    children.forEach((x) => {
+      if (x) {
+        const child = ce(x, elementsObj);
+        elm.appendChild(child);
+      }
+    });
+  }
+  if (name && elementsObj) {
+    // eslint-disable-next-line no-param-reassign
+    elementsObj[name] = elm;
+  }
+  return elm;
+};
+
+function createContainer() {
+  return ce({
+    tag: 'div',
+    props: { className: 'summarize-gpt-container' },
+    children: [{
+      tag: 'div',
+      props: { className: 'summarize__main-body' },
+      children: [{
+        tag: 'div',
+        props: { className: 'summarize__main-body__top-bar' },
+        children: [{
+          tag: 'div',
+          props: { className: 'summarize__main-body__top-bar__rhs' },
+          children: [{
+            tag: 'div',
+            props: { className: 'summarize__main-body__top-bar__rhs__element' },
+            children: [{
+              tag: 'div',
+              props: {
+                onclick: () => {
+                  const element = document.querySelector('.summarize-gpt-container');
+                  element.parentNode.removeChild(element);
+                },
+                className: 'summarize__main-body__top-bar__rhs__element__closeButton',
+              },
+              children: [{ tag: 'img', props: { src: CrossIC }, },],
+            }]
+          }]
+        }]
+      }, {
+        tag: 'div',
+        props: { className: 'summarize__content-container' },
+        children: [{
+          tag: 'div',
+          props: { className: 'summarize__content-outer-container' },
+          children: [{
+            tag: 'div',
+            props: { className: 'summarize__content-inner-container' },
+            children: []
+          }]
+        }],
+      }]
+    }]
+  },)
+}
+
+
+
+
+
 
 function ChatGPTQuery(props) {
   const [answer, setAnswer] = useState(null)
@@ -52,30 +152,34 @@ function ChatGPTQuery(props) {
 
 
   if (answer) {
-    return (
-      <div id="answer" className={"markdown-body gpt-inner " + (props.article ? "summary" : "")}
-        dir="auto">
-        <div className="gpt-header">
-          <p>ChatGPT</p>
+    let answer2 = answer.trim();
+
+    if (!props.article) {
+      return (
+        <div id="answer" className="markdown-body gpt-inner"
+          dir="auto">
+          <div className="gpt-header">
+            <p>IntelliSearch</p>
+          </div>
+
+          <ReactMarkdown rehypePlugins={[[rehypeHighlight, { detect: true }]]}>
+            {answer2}
+          </ReactMarkdown>
+
+          <div className="gpt-footer" style="margin-top: 20px;">
+            <p>Developed by Ahmed Allam</p>
+          </div>
         </div>
+      )
+    } else {
+      // if (!document.head.querySelector(".summarize-styles")) addStylesheet(document, "styles.css", "summarize-styles");
+      const container = createContainer();
+      document.body.appendChild(container);
 
-        {
-          (() => {
-            if (props.article) {
-              return <button id="close"
-                onClick={() => {
-                  document.getElementById("answer").style.display = "none";
-                }}>X</button>
-            }
-          })()
-        }
-
-        <ReactMarkdown rehypePlugins={[[rehypeHighlight, { detect: true }]]}>
-          {answer}
-        </ReactMarkdown>
-
-      </div>
-    )
+      const innerContainer = container.querySelector(".summarize__content-inner-container");
+      innerContainer.innerHTML = '<p><span class="brandName">IntelliSummary</span><pre></pre></p><p class="summarize__footer__text">Developed by Ahmed Allam</p>';
+      innerContainer.querySelector("pre").textContent = answer2;
+    }
   }
 
 
@@ -87,7 +191,7 @@ function ChatGPTQuery(props) {
     )
   }
 
-  if(!props.article)
+  if (!props.article)
     return <p className="gpt-loading gpt-inner">Waiting for response...</p>
 }
 

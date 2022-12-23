@@ -23,6 +23,7 @@ async function runEsbuild() {
     define: {
       'process.env.NODE_ENV': '"production"',
     },
+    loader: {'.svg': 'text'},
     jsxFactory: 'h',
     jsxFragment: 'Fragment',
     jsx: 'automatic',
@@ -60,7 +61,9 @@ async function build() {
     { src: 'build/popup/index.js', dst: 'popup.js' },
     { src: 'build/popup/index.css', dst: 'popup.css' },
     { src: 'src/popup/index.html', dst: 'popup.html' },
-    // { src: 'src/logo.png', dst: 'logo.png' },
+    { src: 'public/16.png', dst: '16.png' },
+    { src: 'public/48.png', dst: '48.png' },
+    { src: 'public/128.png', dst: '128.png' },
   ]
 
   // chromium

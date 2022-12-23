@@ -1,9 +1,8 @@
 import Browser from 'webextension-polyfill'
 
 export const TRIGGER_MODES = {
-  always: 'Always',
-  questionMark: 'When query ends with question mark (?)',
-  manually: 'Manually',
+  enabled: 'Enabled',
+  disabled: 'Disabled',
 }
 
 export async function getUserConfig() {

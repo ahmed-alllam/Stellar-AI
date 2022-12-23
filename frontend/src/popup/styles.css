@@ -1,10 +1,35 @@
 .container {
-  width: 400px;
+  width: 320px;
   padding: 20px;
+  background-color: white;
+  color: black;
+  font-family: Inter, sans-serif !important;
+  transition: all 0.4s ease 0s;
+  min-height: 250px;
 }
 
 .container legend {
   font-weight: bold;
+  color: black;
+  margin: 20px 0;
+}
+
+.container label {
+  color: black;
+}
+
+.container p {
+  margin: 20px 0;
+  color: black;
+}
+
+.container input {
+  border: 0;
+  background-color: #bababa;
+}
+
+.container input:checked {
+  background-color: rgb(30, 86, 240);
 }
 
 .container form {
@@ -13,9 +38,4 @@
 
 .container fieldset {
   margin-bottom: 0;
-}
-
-.github-link {
-  float: right;
-  margin-bottom: 10px;
 }
