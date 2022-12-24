@@ -8,7 +8,7 @@ router.post("/summarize", async (req, res) => {
     const prompt = `Summarize this in one paragraph: \n ${query}.`;
     const params = {
         "prompt": prompt,
-        "max_tokens": 1000,
+        "max_tokens": 5000,
         "temperature": 0.5,
         "model": 'text-curie-001',
         "frequency_penalty": 0,
